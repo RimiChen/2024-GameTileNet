@@ -27,7 +27,16 @@ A dataset for game tiles collected from OpenGameArt.org (CC licenses), with sema
 * LabelingObjectGUI.py: Record user input for labeling Object names.            
 * CreateFileList.py: Import a folder and create a file list based on files inside.
 
-----
+---
+### Instructions
+
+Conda environment for the scripts and models:
+
+```
+conda env create -f environment.yml
+```
+
+---
 
 ### Citation
 
