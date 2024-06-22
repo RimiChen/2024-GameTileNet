@@ -32,5 +32,7 @@ A dataset for game tiles collected from OpenGameArt.org (CC licenses), with sema
 ### Citation
 
 ```
+bibTex:
+
 ```
  
