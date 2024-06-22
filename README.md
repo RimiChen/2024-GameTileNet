@@ -40,8 +40,10 @@ conda env create -f environment.yml
 
 ### Citation
 
-```
 bibTex:
+
+```
+
 
 ```
  
