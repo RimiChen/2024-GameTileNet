@@ -3,6 +3,55 @@ import numpy as np
 from PIL import Image
 from pathlib import Path
 from skimage.metrics import structural_similarity as ssim
+from collections import Counter
+
+
+def is_image_mostly_blank(image_path, threshold=0.85):
+    """
+    Check if an image is mostly blank (threshold% of the pixels are the same color).
+
+    Parameters:
+    image_path (str): Path to the image file.
+    threshold (float): Fraction of pixels that need to be the same for the image to be considered blank.
+
+    Returns:
+    bool: True if the image is mostly blank, False otherwise.
+    """
+    image = Image.open(image_path).convert("RGBA")
+    pixels = image.getdata()
+    pixel_count = len(pixels)
+    
+    # Count the occurrences of each pixel
+    pixel_counter = Counter(pixels)
+    most_common_pixel_count = pixel_counter.most_common(1)[0][1]
+
+    # Calculate the fraction of the most common pixel
+    most_common_fraction = most_common_pixel_count / pixel_count
+
+    return most_common_fraction >= threshold
+
+# check an image is blank
+def is_image_blank(image_path):
+    """
+    Check if an image is blank (single color or transparent).
+
+    Parameters:
+    image_path (str): Path to the image file.
+
+    Returns:
+    bool: True if the image is blank, False otherwise.
+    """
+    image = Image.open(image_path).convert("RGBA")
+    pixels = image.getdata()
+
+    # Get the first pixel value
+    first_pixel = pixels[0]
+
+    # Check if all pixels are the same as the first pixel
+    for pixel in pixels:
+        if pixel != first_pixel:
+            return False
+    return True
 
 # get image index from image path
 def get_image_index(image_path):
@@ -14,6 +63,58 @@ def get_image_index(image_path):
     print("x, y = ", image_x_index, image_y_index)
 
     return image_x_index, image_y_index
+
+
+def is_row_almost_empty(image, row_index, threshold=0.85):
+    """
+    Check if a specific row in an image is almost empty.
+
+    Parameters:
+    image (PIL.Image.Image): The image object.
+    row_index (int): The index of the row to check.
+    threshold (float): Fraction of pixels in the row that need to be the same for the row to be considered almost empty.
+
+    Returns:
+    bool: True if the row is almost empty, False otherwise.
+    """
+    pixels = image.load()
+    width = image.width
+    row_pixels = [pixels[x, row_index] for x in range(width)]
+    
+    # Count the occurrences of each pixel value in the row
+    pixel_counter = Counter(row_pixels)
+    most_common_pixel_count = pixel_counter.most_common(1)[0][1]
+    
+    # Calculate the fraction of the most common pixel value in the row
+    most_common_fraction = most_common_pixel_count / width
+
+    return most_common_fraction >= threshold
+
+def is_column_almost_empty(image, column_index, threshold=0.85):
+    """
+    Check if a specific column in an image is almost empty.
+
+    Parameters:
+    image (PIL.Image.Image): The image object.
+    column_index (int): The index of the column to check.
+    threshold (float): Fraction of pixels in the column that need to be the same for the column to be considered almost empty.
+
+    Returns:
+    bool: True if the column is almost empty, False otherwise.
+    """
+    pixels = image.load()
+    height = image.height
+    column_pixels = [pixels[column_index, y] for y in range(height)]
+    
+    # Count the occurrences of each pixel value in the column
+    pixel_counter = Counter(column_pixels)
+    most_common_pixel_count = pixel_counter.most_common(1)[0][1]
+    
+    # Calculate the fraction of the most common pixel value in the column
+    most_common_fraction = most_common_pixel_count / height
+
+    return most_common_fraction >= threshold
+
 ### Computer histogram similarity
 def histogram_similarity(vec1, vec2, bins=256):
     # Calculate histograms for each RGBA channel
@@ -234,6 +335,10 @@ def checkSimilarity(image_path_1, image_path_2):
         # two_structure = twoRowsStructureSimilarity(image_1, image_2)
         # print("one line color: ", one_similarity, "two lines color: ", two_similarity, "one_structure: ", one_structure, "two_structure: ", two_structure)  
         print("one line color: ", one_similarity, "two lines color: ", two_similarity)  
+        similarity = one_similarity
+        if is_row_almost_empty(image_1, 0) or is_row_almost_empty(image_2, image_2_h-1):
+            print("Separate Images because of empty row")
+            similarity = 0.0
 
     # second image at down x = 0, y = 1, compare down from image 1, and top from image 2
     if image_1_x == image_2_x and image_1_y < image_2_y:
@@ -244,6 +349,12 @@ def checkSimilarity(image_path_1, image_path_2):
         # two_structure = twoRowsStructureSimilarity(image_2, image_1)
         # print("one line color: ", one_similarity, "two lines color: ", two_similarity, "one_structure: ", one_structure, "two_structure: ", two_structure)  
         print("one line color: ", one_similarity, "two lines color: ", two_similarity)  
+        
+        similarity = one_similarity
+        if is_row_almost_empty(image_1, image_1_h-1) or is_row_almost_empty(image_2, 0):
+            print("Separate Images because of empty row")
+            similarity = 0.0
+
 
     # second image at left x = -1, y = 0, left from image 1, right from image 2
     if image_1_x > image_2_x and image_1_y == image_2_y:
@@ -255,6 +366,11 @@ def checkSimilarity(image_path_1, image_path_2):
         # print("one line color: ", one_similarity, "two lines color: ", two_similarity, "one_structure: ", one_structure, "two_structure: ", two_structure)  
         print("one line color: ", one_similarity, "two lines color: ", two_similarity)  
 
+        similarity = one_similarity
+        if is_column_almost_empty(image_1, 0) or is_row_almost_empty(image_2, image_2_w -1):
+            print("Separate Images because of empty column")
+            similarity = 0.0
+
     # second image at right x = 1, y = 0, right from image 1, left from image 2
     if image_1_x < image_2_x and image_1_y == image_2_y:
         print("Check right adjacency")
@@ -265,6 +381,11 @@ def checkSimilarity(image_path_1, image_path_2):
         # print("one line color: ", one_similarity, "two lines color: ", two_similarity, "one_structure: ", one_structure, "two_structure: ", two_structure)  
         print("one line color: ", one_similarity, "two lines color: ", two_similarity)  
 
+        similarity = one_similarity
+        if is_column_almost_empty(image_1, image_1_w -1) or is_row_almost_empty(image_2, 0):
+            print("Separate Images because of empty column")
+            similarity = 0.0
+
     # if similarity > SIMILARITY_THRESHOLDS:
     #     isAdjacent = True
 
@@ -272,4 +393,4 @@ def checkSimilarity(image_path_1, image_path_2):
     # if one_similarity > SIMILARITY_THRESHOLDS:
     #     isAdjacent = True
 
-    return one_similarity
+    return similarity
