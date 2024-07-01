@@ -137,7 +137,10 @@ if __name__ == "__main__":
     # main()
 
     tileset_folder = "Data/GameTile/Tilesets/"
-    tileset_name = "001_001.png"
+    tileset_name = "014_001.png"
     tile_size = 32
 
-    DisplayImage(tileset_folder+tileset_name, 32)
+    # DisplayImage(tileset_folder+tileset_name, 32)
+
+    ### From DisplayImage
+    draw_grid(tileset_folder+tileset_name, 32)

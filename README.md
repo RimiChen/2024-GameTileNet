@@ -22,7 +22,8 @@ A dataset for game tiles collected from OpenGameArt.org (CC licenses), with sema
     - CompareSimilarityLabels.py
     - Identify16-32.py
     - FindSegmentations.py
-    - ExtractObject.py            
+    - ExtractObject.py
+    - CheckTilesetGrid.py            
   <!-- - **annotations**/
     - dataset1.csv
     - dataset2.csv -->
@@ -48,6 +49,7 @@ A dataset for game tiles collected from OpenGameArt.org (CC licenses), with sema
 * Identify16-32.py: Identify whetehr the tileset is 32 based or 16 based.
 * FindSegmentations.py: Find related tiles by adjacency.
 * ExtractObject.py: Edge detection for objects on tileset.
+* CheckTilesetGrid.py: Generated assigned size grid for tileset images, to check whether the tileset is 32 or 16.
 ---
 ### Instructions
 
