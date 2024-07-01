@@ -89,11 +89,16 @@ def process_subfolders(parent_folder):
             # print(get_last_folder_name(subfolder_path))
             
             out_path, last_folder = split_path(subfolder_path)
+            neighbor_path = out_path+"_neighbors/"
+
+            if not os.path.exists(neighbor_path):
+                os.makedirs(neighbor_path)
+
             if "black" not in subfolder_path and "white" not in subfolder_path:
 
                 if os.path.isdir(subfolder_path):
                     neighbors_info = find_neighbors(subfolder_path)
-                    output_path = os.path.join(out_path, last_folder+'_neighbors_info.json')
+                    output_path = os.path.join(neighbor_path, last_folder+'_neighbors_info.json')
                     save_neighbors_info(neighbors_info, output_path)
 
 

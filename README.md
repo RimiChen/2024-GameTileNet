@@ -15,7 +15,14 @@ A dataset for game tiles collected from OpenGameArt.org (CC licenses), with sema
     - Transform16-32.py
     - Test.py
     - DisplayImage.py
-    - FindNeighbots.py            
+    - FindNeighbots.py
+    - SelectImagePairs.py
+    - StatisticsForSimilarity.py
+    - LabelingSimilarityAuto.py
+    - CompareSimilarityLabels.py
+    - Identify16-32.py
+    - FindSegmentations.py
+    - ExtractObject.py            
   <!-- - **annotations**/
     - dataset1.csv
     - dataset2.csv -->
@@ -34,6 +41,13 @@ A dataset for game tiles collected from OpenGameArt.org (CC licenses), with sema
 * Test.py: Mixed testing scripts
 * DisplayImage.py: Dispaly tileset with tile_size grids.
 * FindNeighbots.py: For each split tiles in tileset folder, find all their exist neighbors.
+* SelectImagePairs.py: Select adjacent image pairs randomly.
+* StatisticsForSimilarity.py: Collect the similarity annotations and computer statistic values.
+* LabelingSimilarityAuto.py: Automatically decide whether the two tiles are connected.
+* CompareSimilarityLabels.py: Compare the similarity labeling results.
+* Identify16-32.py: Identify whetehr the tileset is 32 based or 16 based.
+* FindSegmentations.py: Find related tiles by adjacency.
+* ExtractObject.py: Edge detection for objects on tileset.
 ---
 ### Instructions
 

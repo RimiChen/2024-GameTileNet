@@ -8,11 +8,13 @@ import os
 
 from CheckTileSimilarity import *
 
-json_path = "Data/GameTile/Json/"
-image_pair_file = json_path + "image_pairs_test.json"
-out_path = "Data/GameTile/Json/"
-out_file = out_path+"label_similarity.json"
-
+index = 19
+json_path = "Data/GameTile/small_SimilarityLabel_pairs_verify/"
+image_pair_file = json_path + "output_image_pairs_"+str(index)+".json"
+print("source: ", image_pair_file)
+out_path = "Data/GameTile/small_SimilarityLabel_verify/"
+out_file = out_path+"label_similarity_"+str(index)+".json"
+print("result: ", out_file)
 
 # Load pairs of images from JSON file
 def load_image_pairs(json_path):

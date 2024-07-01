@@ -6,6 +6,57 @@ from skimage.metrics import structural_similarity as ssim
 from collections import Counter
 
 
+
+def is_row_alpha_mostly_zero(image, row_index, threshold=0.85):
+    """
+    Check if a specific row in an image has alpha values that are mostly 0.
+
+    Parameters:
+    image (PIL.Image.Image): The image object.
+    row_index (int): The index of the row to check.
+    threshold (float): Fraction of pixels in the row that need to have alpha value 0 for the row to be considered mostly transparent.
+
+    Returns:
+    bool: True if the row's alpha values are mostly 0, False otherwise.
+    """
+    pixels = image.load()
+    width = image.width
+    alpha_values = [pixels[x, row_index][3] for x in range(width)]
+    
+    # Count the occurrences of each alpha value in the row
+    alpha_counter = Counter(alpha_values)
+    zero_alpha_count = alpha_counter[0]
+    
+    # Calculate the fraction of pixels with alpha value 0
+    zero_alpha_fraction = zero_alpha_count / width
+
+    return zero_alpha_fraction >= threshold
+
+def is_column_alpha_mostly_zero(image, column_index, threshold=0.85):
+    """
+    Check if a specific column in an image has alpha values that are mostly 0.
+
+    Parameters:
+    image (PIL.Image.Image): The image object.
+    column_index (int): The index of the column to check.
+    threshold (float): Fraction of pixels in the column that need to have alpha value 0 for the column to be considered mostly transparent.
+
+    Returns:
+    bool: True if the column's alpha values are mostly 0, False otherwise.
+    """
+    pixels = image.load()
+    height = image.height
+    alpha_values = [pixels[column_index, y][3] for y in range(height)]
+    
+    # Count the occurrences of each alpha value in the column
+    alpha_counter = Counter(alpha_values)
+    zero_alpha_count = alpha_counter[0]
+    
+    # Calculate the fraction of pixels with alpha value 0
+    zero_alpha_fraction = zero_alpha_count / height
+
+    return zero_alpha_fraction >= threshold
+
 def is_image_mostly_blank(image_path, threshold=0.85):
     """
     Check if an image is mostly blank (threshold% of the pixels are the same color).
@@ -336,8 +387,9 @@ def checkSimilarity(image_path_1, image_path_2):
         # print("one line color: ", one_similarity, "two lines color: ", two_similarity, "one_structure: ", one_structure, "two_structure: ", two_structure)  
         print("one line color: ", one_similarity, "two lines color: ", two_similarity)  
         similarity = one_similarity
-        if is_row_almost_empty(image_1, 0) or is_row_almost_empty(image_2, image_2_h-1):
-            print("Separate Images because of empty row")
+        if is_row_alpha_mostly_zero(image_1, 0) or is_row_alpha_mostly_zero(image_2, image_2_h-1):
+        # if is_row_almost_empty(image_1, 0) or is_row_almost_empty(image_2, image_2_h-1):
+            print("image 2 at top, Separate Images because of empty row")
             similarity = 0.0
 
     # second image at down x = 0, y = 1, compare down from image 1, and top from image 2
@@ -351,8 +403,9 @@ def checkSimilarity(image_path_1, image_path_2):
         print("one line color: ", one_similarity, "two lines color: ", two_similarity)  
         
         similarity = one_similarity
-        if is_row_almost_empty(image_1, image_1_h-1) or is_row_almost_empty(image_2, 0):
-            print("Separate Images because of empty row")
+        if is_row_alpha_mostly_zero(image_1, image_1_h-1) or is_row_alpha_mostly_zero(image_2, 0):
+        # if is_row_almost_empty(image_1, image_1_h-1) or is_row_almost_empty(image_2, 0):
+            print("image 2 at down, Separate Images because of empty row")
             similarity = 0.0
 
 
@@ -367,8 +420,9 @@ def checkSimilarity(image_path_1, image_path_2):
         print("one line color: ", one_similarity, "two lines color: ", two_similarity)  
 
         similarity = one_similarity
-        if is_column_almost_empty(image_1, 0) or is_row_almost_empty(image_2, image_2_w -1):
-            print("Separate Images because of empty column")
+        if is_column_alpha_mostly_zero(image_1, 0) or is_column_alpha_mostly_zero(image_2, image_2_w -1):        
+        # if is_column_almost_empty(image_1, 0) or is_row_almost_empty(image_2, image_2_w -1):
+            print("image 2 at left, Separate Images because of empty column")
             similarity = 0.0
 
     # second image at right x = 1, y = 0, right from image 1, left from image 2
@@ -382,8 +436,9 @@ def checkSimilarity(image_path_1, image_path_2):
         print("one line color: ", one_similarity, "two lines color: ", two_similarity)  
 
         similarity = one_similarity
-        if is_column_almost_empty(image_1, image_1_w -1) or is_row_almost_empty(image_2, 0):
-            print("Separate Images because of empty column")
+        if is_column_alpha_mostly_zero(image_1, image_1_w -1) or is_column_alpha_mostly_zero(image_2, 0):   
+        # if is_column_almost_empty(image_1, image_1_w -1) or is_row_almost_empty(image_2, 0):
+            print("image 2 at right, Separate Images because of empty column")
             similarity = 0.0
 
     # if similarity > SIMILARITY_THRESHOLDS:
