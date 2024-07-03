@@ -9,7 +9,7 @@ from PIL import Image, ImageTk
 # format = ".png"
 # Similarity_threshold = 0.671875
 root_folder = "Data/GameTile/small_segment_recursive/"
-tile_path = "000_003/"
+tile_path = "001_004/"
 # out_file = out_path+"all_tilesets.json"
 
 
@@ -19,6 +19,7 @@ class ImageLabelingApp:
         self.image_folder = image_folder
         self.image_files = [f for f in os.listdir(image_folder) if f.endswith('.png')]
         self.current_image_index = 0
+        self.selected_labels = []
         self.labels = {f: [] for f in self.image_files}
         self.create_output_folders()
 
@@ -44,8 +45,21 @@ class ImageLabelingApp:
         self.button_texture = tk.Button(self.master, text="Texture", command=lambda: self.label_image("texture"))
         self.button_texture.pack(side=tk.LEFT)
 
+        self.button_clear = tk.Button(self.master, text="Clear", command=self.clear_labels)
+        self.button_clear.pack(side=tk.LEFT)        
+
         self.button_next = tk.Button(self.master, text="Next", command=self.next_image)
         self.button_next.pack(side=tk.RIGHT)
+
+    def update_label_display(self):
+        image_file = self.image_files[self.current_image_index]
+        current_labels = ', '.join( self.labels[image_file])
+        self.label_var.set(f"Labels: {current_labels if current_labels else 'None'}")
+
+    def clear_labels(self):
+        image_file = self.image_files[self.current_image_index]
+        self.labels[image_file].clear()
+        self.update_label_display()
 
     def show_image(self):
         if self.current_image_index < len(self.image_files):

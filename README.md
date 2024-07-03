@@ -24,8 +24,10 @@ A dataset for game tiles collected from OpenGameArt.org (CC licenses), with sema
     - Identify16-32.py
     - FindSegmentations.py
     - ExtractObject.py
+    - ExtractObjectModel.py
     - CheckTilesetGrid.py
-    - LabelingCompleteness.py            
+    - LabelingCompleteness.py
+    - Transform16-32.py            
   <!-- - **annotations**/
     - dataset1.csv
     - dataset2.csv -->
@@ -52,8 +54,10 @@ A dataset for game tiles collected from OpenGameArt.org (CC licenses), with sema
 * Identify16-32.py: Identify whetehr the tileset is 32 based or 16 based.
 * FindSegmentations.py: Find related tiles by adjacency.
 * ExtractObject.py: Edge detection for objects on tileset.
+* ExtractObjectModel.py: Segmentation with Segment anything model.
 * CheckTilesetGrid.py: Generated assigned size grid for tileset images, to check whether the tileset is 32 or 16.
 * LabelingCompleteness.py: Allow users to labeling the completeness of the segmented tiles.
+* Transform16-32.py: Transform 16x16 tile into 32x32.  
 ---
 ### Instructions
 
