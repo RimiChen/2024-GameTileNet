@@ -21,9 +21,9 @@ TITLE_HEIGHT = 64
 SIMILARITY_THRESHOLDS = 0.5 
 
 # tileset_path = "Data/GameTile/Tilesets/"
-tileset_path = "Data/GameTile/Tilesets_small/"
+tileset_path = "Data/GameTile/small_Tilesets/"
 
-out_path = "Data/GameTile/dataset_small/"
+out_path = "Data/GameTile/small_dataset/"
 black_back_image = "Data/GameTile/black.png"
 white_back_image = "Data/GameTile/white.png"
 blank_back_image = "Data/GameTile/blank.png"
@@ -205,12 +205,15 @@ def SliceTileCoordinate(image_path, out_path, tile_size):
 
     # Save or use the extracted tiles
     directory = out_path + "/"+getImageName(image_path)
+    no_reduce_directory = out_path + "/"+getImageName(image_path)+"_full"
     black_directory = out_path + "/"+getImageName(image_path)+"_black"
     white_directory = out_path + "/"+getImageName(image_path)+"_white"
     # print("Path:", directory, black_directory, white_directory)
     
     if not os.path.exists(directory):
         os.makedirs(directory)
+    if not os.path.exists(no_reduce_directory):
+        os.makedirs(no_reduce_directory)        
     if not os.path.exists(black_directory):
         os.makedirs(black_directory)
 
@@ -219,12 +222,16 @@ def SliceTileCoordinate(image_path, out_path, tile_size):
 
     for key in tile_annotations.keys():
         new_path = directory+"/"+ tile_annotations[key]["name"]+".png"
+        new_no_reduce_path = no_reduce_directory+"/"+ tile_annotations[key]["name"]+".png"
         new_black_path = black_directory+"/"+ tile_annotations[key]["name"]+".png"
         new_white_path = white_directory+"/"+ tile_annotations[key]["name"]+".png"
 
         tiles[key].save(new_path)
+        tiles[key].save(new_no_reduce_path)
 
-        if is_image_mostly_blank(new_path):
+        # if is_image_mostly_blank(new_path):
+        if is_almost_transparent(new_path):
+        
             # if an blank image
             os.remove(new_path)
             # if not os.path.exists(new_path):

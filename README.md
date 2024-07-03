@@ -6,6 +6,7 @@ A dataset for game tiles collected from OpenGameArt.org (CC licenses), with sema
 
 - **2024-GameTileNet**/
   - **src**/
+    - environment.yml
     - SliceTile.py
     - LabelSimilarityGUI.py
     - CheckTileSimilarity.py
@@ -23,7 +24,8 @@ A dataset for game tiles collected from OpenGameArt.org (CC licenses), with sema
     - Identify16-32.py
     - FindSegmentations.py
     - ExtractObject.py
-    - CheckTilesetGrid.py            
+    - CheckTilesetGrid.py
+    - LabelingCompleteness.py            
   <!-- - **annotations**/
     - dataset1.csv
     - dataset2.csv -->
@@ -32,7 +34,8 @@ A dataset for game tiles collected from OpenGameArt.org (CC licenses), with sema
   ---
 ### File Descriptions
 
-* SliceTile.py: Slice tilesets into 32x32 size, and find corresponding segements on the tileset images. Create and save the slices in folder: <tileset_name: (collection_index)_(tileset_index)>. 
+* SliceTile.py: Slice tilesets into 32x32 size, and find corresponding segements on the tileset images. Create and save the slices in folder: <tileset_name: (collection_index)_(tileset_index)>.
+* environment.yml: the environment settings for conda env. 
 * LabelSimilarityGUI.py: Record the similarity of two adjacent tiles.
 * CheckTileSimilarity.py: Check the similarity of two adjacent tiles, and other image processing functions: filter the blank image, set similarity to zero if all side blank, etc.. 
 * LabelingConnectivityGUI.py: Record tile's possible connecting directions.
@@ -50,6 +53,7 @@ A dataset for game tiles collected from OpenGameArt.org (CC licenses), with sema
 * FindSegmentations.py: Find related tiles by adjacency.
 * ExtractObject.py: Edge detection for objects on tileset.
 * CheckTilesetGrid.py: Generated assigned size grid for tileset images, to check whether the tileset is 32 or 16.
+* LabelingCompleteness.py: Allow users to labeling the completeness of the segmented tiles.
 ---
 ### Instructions
 

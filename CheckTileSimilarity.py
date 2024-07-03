@@ -81,6 +81,41 @@ def is_image_mostly_blank(image_path, threshold=0.85):
 
     return most_common_fraction >= threshold
 
+def is_almost_transparent(image_path, threshold=0.95, alpha_threshold=10):
+    """
+    Check if an image is almost transparent.
+
+    Args:
+    image_path (str): Path to the image file.
+    threshold (float): Proportion of transparent pixels required to consider the image almost transparent.
+                       Default is 0.95 (i.e., 95% transparent pixels).
+    alpha_threshold (int): Maximum alpha value to consider a pixel as transparent.
+                           Default is 10 (on a scale of 0-255).
+
+    Returns:
+    bool: True if the image is almost transparent, False otherwise.
+    """
+    with Image.open(image_path) as img:
+        # Convert the image to RGBA if it does not have an alpha channel
+        if img.mode != 'RGBA':
+            img = img.convert('RGBA')
+        
+        # Convert the image to a NumPy array
+        img_array = np.array(img)
+        
+        # Get the alpha channel
+        alpha_channel = img_array[:, :, 3]
+        
+        # Count the number of almost transparent pixels
+        transparent_pixels = np.sum(alpha_channel <= alpha_threshold)
+        
+        # Calculate the proportion of almost transparent pixels
+        total_pixels = alpha_channel.size
+        transparent_proportion = transparent_pixels / total_pixels
+        
+        # Determine if the image is almost transparent
+        return transparent_proportion >= threshold
+
 # check an image is blank
 def is_image_blank(image_path):
     """
