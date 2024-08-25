@@ -9,7 +9,7 @@ from PIL import Image, ImageTk
 # format = ".png"
 # Similarity_threshold = 0.671875
 root_folder = "Data/GameTile/small_segment_recursive/"
-tile_path = "001_004/"
+tile_path = "002_001/"
 # out_file = out_path+"all_tilesets.json"
 
 
