@@ -164,3 +164,7 @@ cython_debug/
 ### data folders
 Data/
 PaperImages/
+
+### keys
+sk.py
+*/sk.py
