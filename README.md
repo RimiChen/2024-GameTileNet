@@ -11,6 +11,7 @@ A dataset for game tiles collected from OpenGameArt.org (CC licenses), with sema
     - LabelSimilarityGUI.py
     - CheckTileSimilarity.py
     - LabelingConnectivityGUI.py
+    - LabelingConnectivityGUI2.py
     - LabelingObjectGUI.py            
     - CreateFileList.py
     - Transform16-32.py
@@ -41,6 +42,7 @@ A dataset for game tiles collected from OpenGameArt.org (CC licenses), with sema
 * LabelSimilarityGUI.py: Record the similarity of two adjacent tiles.
 * CheckTileSimilarity.py: Check the similarity of two adjacent tiles, and other image processing functions: filter the blank image, set similarity to zero if all side blank, etc.. 
 * LabelingConnectivityGUI.py: Record tile's possible connecting directions.
+* LabelingConnectivityGUI2.py: Record tile's possible connecting directions. New version.
 * LabelingObjectGUI.py: Record user input for labeling Object names.            
 * CreateFileList.py: Import a folder and create a file list based on files inside.
 * Transform16-32.py: Tranform 16x16 tile to 32x32 tiles.
