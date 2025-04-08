@@ -235,7 +235,7 @@ def histogram_similarity(vec1, vec2, bins=256):
     overall_similarity = (similarity_r + similarity_g + similarity_b + similarity_a) / 4.0
     
     return overall_similarity
-### computer SSIM
+### compute SSIM
 def compare_ssim(image1_part, image2_part):
     ssim_index, ssim_map = ssim(image1_part, image2_part, full=True)
     return ssim_index

@@ -164,6 +164,7 @@ cython_debug/
 ### data folders
 Data/
 PaperImages/
+Testing_Annotations/
 
 ### keys
 sk.py
