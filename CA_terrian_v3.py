@@ -2,21 +2,41 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 from collections import deque
+import random
+import time
 
-# Constants
+# --- RANDOM SEED SETTING ---
+USE_FIXED_SEED = True  # Set to False for random map each run
+
+if USE_FIXED_SEED:
+    seed = 42
+    print(f"[Seed Mode] Using fixed seed: {seed}")
+else:
+    seed = int(time.time())
+    print(f"[Seed Mode] Using random seed: {seed}")
+
+np.random.seed(seed)
+random.seed(seed)
+
+# --- CONSTANTS ---
 MAP_WIDTH = 20
 MAP_HEIGHT = 20
 NUM_ITERATIONS = 4
 
+# Tile IDs
 TILE_EMPTY = 0
 TILE_GRASS = 1
+TILE_TREE = 2
+TILE_ROCK = 3
+TILE_CHEST = 4
+TILE_DOOR = 5
+TILE_KEY = 6
+TILE_POTION = 7
 
-# Step 1: Initialize terrain
+# --- TERRAIN FUNCTIONS ---
 def initialize_terrain(width, height, grass_prob=0.6):
-    np.random.seed(42)
     return np.random.choice([TILE_EMPTY, TILE_GRASS], size=(height, width), p=[1 - grass_prob, grass_prob])
 
-# Step 2: Smooth with cellular automata
 def count_grass_neighbors(grid, x, y):
     total = 0
     for dx in [-1, 0, 1]:
@@ -36,7 +56,6 @@ def smooth_terrain(grid):
             new_grid[x, y] = TILE_GRASS if grass_neighbors > 4 else TILE_EMPTY
     return new_grid
 
-# Step 3: Ensure full connectivity
 def flood_fill(grid, start_x, start_y, visited):
     queue = deque([(start_x, start_y)])
     region = set()
@@ -72,7 +91,6 @@ def connect_regions(grid, regions):
                 if d < min_dist:
                     min_dist = d
                     best_pair = ((x1, y1), (x2, y2))
-        # Create horizontal then vertical path
         (x1, y1), (x2, y2) = best_pair
         for y in range(min(y1, y2), max(y1, y2)+1):
             grid[x1, y] = TILE_GRASS
@@ -81,24 +99,57 @@ def connect_regions(grid, regions):
         main_region.update(region)
     return grid
 
-# Step 4: Visualization
-def visualize_terrain(grid, title="Connected Terrain Map"):
-    cmap = ListedColormap(["white", "green"])
-    plt.figure(figsize=(6, 6))
-    plt.title(title)
-    plt.imshow(grid, cmap=cmap)
-    plt.axis("off")
-    plt.show()
+# --- LAYER 0: BASE TERRAIN ---
+terrain_layer = initialize_terrain(MAP_WIDTH, MAP_HEIGHT)
+for _ in range(NUM_ITERATIONS):
+    terrain_layer = smooth_terrain(terrain_layer)
+regions = find_disconnected_regions(terrain_layer)
+if len(regions) > 1:
+    terrain_layer = connect_regions(terrain_layer, regions)
 
-# Main
-def main():
-    terrain = initialize_terrain(MAP_WIDTH, MAP_HEIGHT)
-    for _ in range(NUM_ITERATIONS):
-        terrain = smooth_terrain(terrain)
-    regions = find_disconnected_regions(terrain)
-    if len(regions) > 1:
-        terrain = connect_regions(terrain, regions)
-    visualize_terrain(terrain)
+# --- LAYER 1: ENVIRONMENTAL OBJECTS (TREES, ROCKS) ---
+scene_layer = np.full_like(terrain_layer, TILE_EMPTY)
+for x in range(MAP_HEIGHT):
+    for y in range(MAP_WIDTH):
+        if terrain_layer[x, y] == TILE_GRASS:
+            rand_val = random.random()
+            if rand_val < 0.05:
+                scene_layer[x, y] = TILE_TREE
+            elif rand_val < 0.08:
+                scene_layer[x, y] = TILE_ROCK
 
-if __name__ == "__main__":
-    main()
+# --- LAYER 2: INTERACTIVE OBJECTS + ITEMS ---
+layer2 = np.full_like(terrain_layer, TILE_EMPTY)
+for x in range(MAP_HEIGHT):
+    for y in range(MAP_WIDTH):
+        if terrain_layer[x, y] == TILE_GRASS and scene_layer[x, y] == TILE_EMPTY:
+            rand_val = random.random()
+            if rand_val < 0.02:
+                layer2[x, y] = TILE_CHEST
+            elif rand_val < 0.035:
+                layer2[x, y] = TILE_DOOR
+            elif rand_val < 0.05:
+                layer2[x, y] = TILE_KEY
+            elif rand_val < 0.07:
+                layer2[x, y] = TILE_POTION
+
+# --- FINAL VISUALIZATION ---
+final_combined = np.where(layer2 != TILE_EMPTY, layer2,
+                   np.where(scene_layer != TILE_EMPTY, scene_layer, terrain_layer))
+
+cmap_all = ListedColormap([
+    "white",       # 0 - Empty
+    "green",       # 1 - Grass
+    "saddlebrown", # 2 - Tree
+    "gray",        # 3 - Rock
+    "gold",        # 4 - Chest
+    "darkred",     # 5 - Door
+    "yellow",      # 6 - Key
+    "violet"       # 7 - Potion
+])
+
+plt.figure(figsize=(6, 6))
+plt.title("Layer 0–2: Full Scene with Interactive Objects & Items")
+plt.imshow(final_combined, cmap=cmap_all)
+plt.axis("off")
+plt.show()
