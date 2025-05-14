@@ -1,0 +1,130 @@
+[
+  {
+    "scene_title": "Jake discovers the cryptic note",
+    "layered_objects": {
+      "terrain": [],
+      "environmental_objects": [
+        {
+          "object": "Streetlight",
+          "category": "Environmental Object",
+          "suggested_terrain": "urban",
+          "confidence": 0.9
+        }
+      ],
+      "interactive_objects": [
+        {
+          "object": "Trash can",
+          "category": "Interactive Object",
+          "suggested_terrain": "urban",
+          "confidence": 0.8
+        },
+        {
+          "object": "trash can",
+          "category": "Interactive Object",
+          "suggested_terrain": "urban",
+          "confidence": 0.8
+        }
+      ],
+      "items": [
+        {
+          "object": "cryptic note",
+          "category": "Item / Collectible",
+          "suggested_terrain": "urban",
+          "confidence": 0.9
+        }
+      ],
+      "characters": [
+        {
+          "object": "Jake",
+          "category": "Character",
+          "suggested_terrain": "any",
+          "confidence": 1.0
+        }
+      ],
+      "fx": []
+    }
+  },
+  {
+    "scene_title": "Jake evades gangsters",
+    "layered_objects": {
+      "terrain": [
+        {
+          "object": "dark alley",
+          "category": "Terrain",
+          "suggested_terrain": "urban",
+          "confidence": 1.0
+        }
+      ],
+      "environmental_objects": [],
+      "interactive_objects": [],
+      "items": [],
+      "characters": [
+        {
+          "object": "Gangsters",
+          "category": "Character",
+          "suggested_terrain": "urban",
+          "confidence": 0.95
+        },
+        {
+          "object": "Jake",
+          "category": "Character",
+          "suggested_terrain": "any",
+          "confidence": 1.0
+        }
+      ],
+      "fx": [
+        {
+          "object": "Moonlight",
+          "category": "Effect / Ambient / Unknown",
+          "suggested_terrain": "any",
+          "confidence": 0.8
+        }
+      ]
+    }
+  },
+  {
+    "scene_title": "Jake finds the treasure",
+    "layered_objects": {
+      "terrain": [],
+      "environmental_objects": [
+        {
+          "object": "City skyline",
+          "category": "Environmental Object",
+          "suggested_terrain": "urban",
+          "confidence": 0.9
+        },
+        {
+          "object": "Statue of Liberty",
+          "category": "Environmental Object",
+          "suggested_terrain": "urban",
+          "confidence": 0.9
+        }
+      ],
+      "interactive_objects": [
+        {
+          "object": "Statue of Liberty's crown",
+          "category": "Interactive Object",
+          "suggested_terrain": "urban",
+          "confidence": 0.8
+        }
+      ],
+      "items": [
+        {
+          "object": "treasure",
+          "category": "Item / Collectible",
+          "suggested_terrain": "any",
+          "confidence": 1.0
+        }
+      ],
+      "characters": [
+        {
+          "object": "Jake",
+          "category": "Character",
+          "suggested_terrain": "any",
+          "confidence": 1.0
+        }
+      ],
+      "fx": []
+    }
+  }
+]
