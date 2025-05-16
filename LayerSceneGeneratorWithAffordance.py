@@ -1,10 +1,10 @@
 import json
 
 # --- Load Inputs ---
-with open("adventure_scene_output_FIXED.json", "r", encoding="utf-8") as f:
+with open("2_adventure_scene_output_FIXED.json", "r", encoding="utf-8") as f:
     narrative_data = json.load(f)
 
-with open("object_affordance_langchain.json", "r", encoding="utf-8") as f:
+with open("2_object_affordance_langchain.json", "r", encoding="utf-8") as f:
     affordance_data = json.load(f)
 
 global_affordances = affordance_data["global_object_affordances"]
