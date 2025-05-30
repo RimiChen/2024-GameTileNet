@@ -9,6 +9,8 @@ from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 from sk import my_sk  # your OpenAI API key
 
+STORY_ID = 10
+
 # --- LLM Setup ---
 llm = ChatOpenAI(model_name="gpt-4", openai_api_key=my_sk, temperature=0.7)
 
@@ -92,7 +94,7 @@ if current_frame and current_relations:
     })
 
 # --- Save fixed output ---
-with open("adventure_scene_output_FIXED.json", "w", encoding="utf-8") as f:
+with open("StoryFiles/"+str(STORY_ID)+"_adventure_scene_output_FIXED.json", "w", encoding="utf-8") as f:
     json.dump(output_data, f, indent=2, ensure_ascii=False)
 
 print("Fixed version saved to adventure_scene_output_FIXED.json.")

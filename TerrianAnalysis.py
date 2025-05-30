@@ -4,9 +4,12 @@ from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 
+
+STORY_ID = 10
+
 # --- Config ---
-INPUT_FILE = "2_adventure_scene_output_FIXED.json"
-OUTPUT_FILE = "2_object_affordance_langchain.json"
+INPUT_FILE = "StoryFiles/"+str(STORY_ID)+"_adventure_scene_output_FIXED.json"
+OUTPUT_FILE = "StoryFiles/"+str(STORY_ID)+"_object_affordance_langchain.json"
 # OPENAI_API_KEY = "your_openai_api_key_here"  # Replace with your API key
 
 # llm = ChatOpenAI(model_name="gpt-4", openai_api_key=OPENAI_API_KEY, temperature=0.2)
