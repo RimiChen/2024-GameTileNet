@@ -431,26 +431,77 @@ def create_segmented_folder(path):
     return new_path
 
 
-if __name__ == "__main__":
-    # main()
+# if __name__ == "__main__":
+#     # main()
 
+#     tileset_folder = "Data/GameTile/small_Tilesets/"
+#     target_folder = "Data/GameTile/small_dataset/"
+#     tileset_name = "000_001.png"
+#     tile_size = 32
+
+
+
+    
+#     all_tile_json = out_file
+#     file_list = list_files_in_folder(tileset_folder)
+#     save_file_list_to_json(file_list, out_file)
+#     # save_file_list_to_json(tileset_folder, out_file)
+    
+#     # DisplayImage(tileset_folder+tileset_name, 32)
+#     for new_image in file_list:
+#         print(tileset_folder)
+
+#         new_image_name = getImageName(new_image)+".png"
+#         image_folder_path = target_folder + getImageName(new_image_name)+"_full/"        
+#         SeparateObjects(tileset_folder, new_image_name, image_folder_path, 32)
+
+
+
+if __name__ == "__main__":
     tileset_folder = "Data/GameTile/small_Tilesets/"
-    target_folder = "Data/GameTile/small_dataset/"
-    tileset_name = "000_001.png"
+    target_root_folder = "Data/GameTile/small_tiles/No_Reduce_Tiles/"
+    output_root_folder = "Data/GameTile/new_small_segments_recursive/"
     tile_size = 32
 
+    os.makedirs(output_root_folder, exist_ok=True)
 
+    for subfolder in sorted(os.listdir(target_root_folder)):
+        subfolder_path = os.path.join(target_root_folder, subfolder)
+        if not os.path.isdir(subfolder_path):
+            continue
 
-    
-    all_tile_json = out_file
-    file_list = list_files_in_folder(tileset_folder)
-    save_file_list_to_json(file_list, out_file)
-    # save_file_list_to_json(tileset_folder, out_file)
-    
-    # DisplayImage(tileset_folder+tileset_name, 32)
-    for new_image in file_list:
-        print(tileset_folder)
+        # Derive base tileset name by removing '_no_reduce' suffix
+        if subfolder.endswith("_no_reduce"):
+            base_name = subfolder.replace("_no_reduce", "")
+        else:
+            base_name = subfolder
 
-        new_image_name = getImageName(new_image)+".png"
-        image_folder_path = target_folder + getImageName(new_image_name)+"_full/"        
-        SeparateObjects(tileset_folder, new_image_name, image_folder_path, 32)
+        tileset_image_path = os.path.join(tileset_folder, f"{base_name}.png")
+        if not os.path.exists(tileset_image_path):
+            print(f"Tileset image not found: {tileset_image_path}")
+            continue
+
+        print(f"\n=== Processing Subfolder: {subfolder} with Tileset: {base_name}.png ===")
+
+        # Output path setup
+        output_subfolder = os.path.join(output_root_folder, f"{subfolder}_seg")
+        os.makedirs(output_subfolder, exist_ok=True)
+
+        # Segment objects
+        SeparateObjects(
+            image_folder=tileset_folder,
+            image_name=f"{base_name}.png",
+            target_folder=subfolder_path + "/",  # where the split tiles are
+            tile_size=tile_size
+        )
+
+        # Move segmented output to assigned output folder
+        generated_seg_path = subfolder_path.rstrip("/") + "_seg/"
+        if os.path.exists(generated_seg_path):
+            for f in os.listdir(generated_seg_path):
+                src = os.path.join(generated_seg_path, f)
+                dst = os.path.join(output_subfolder, f)
+                os.rename(src, dst)
+            os.rmdir(generated_seg_path)
+
+        print(f"Saved segmented results to {output_subfolder}")
