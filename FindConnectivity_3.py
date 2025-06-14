@@ -6,11 +6,11 @@ from skimage.metrics import structural_similarity as ssim
 
 # Configuration
 TILESET_FOLDER = "Data/GameTile/small_Tilesets"
-SPLIT_TILE_FOLDER = "Data/GameTile/small_dataset"
-OUTPUT_FOLDER = "Data/GameTile/connectivity_results"  # Folder to store JSON files
+SPLIT_TILE_FOLDER = "Data/GameTile/small_dataset/Tiles/"
+OUTPUT_FOLDER = "Data/GameTile/connectivity_results_4"  # Folder to store JSON files
 TILE_SIZE = 32
-THRESHOLD = 0.85
-TRANSPARENCY_THRESHOLD = 0.5  # Transparency detection threshold
+THRESHOLD = 0.55
+TRANSPARENCY_THRESHOLD = 0.6  # Transparency detection threshold
 EDGE_CHECK_ROWS = 4  # Number of pixels to check at the edge
 
 # Ensure output folder exists
@@ -93,11 +93,17 @@ for tileset in tileset_images:
     tileset_id = os.path.splitext(tileset)[0]  # Extract ID (e.g., "000_001")
 
     tileset_folder = os.path.join(SPLIT_TILE_FOLDER, tileset_id)
+
+    print(f"[INFO] Processing tileset: {tileset_id}")
+    print(f"        -> tileset folder exists: {os.path.exists(tileset_folder)}")
+
     if not os.path.exists(tileset_folder):
         continue
 
     tile_files = [f for f in os.listdir(tileset_folder) if f.startswith("tiles_") and f.endswith(".png")]
     tile_coords = [(int(f.split("_")[1]), int(f.split("_")[2].split(".")[0])) for f in tile_files]
+    print(f"        -> Found {len(tile_coords)} tiles in {tileset_folder}")
+
     if not tile_coords:
         continue
 
@@ -144,7 +150,10 @@ for tileset in tileset_images:
         })
 
     # Save each tileset's result separately
+
+
     output_file = os.path.join(OUTPUT_FOLDER, f"tile_connectivity-{tileset_id}.json")
+    print(f"[SAVE] Writing results to {output_file} with {len(results)} tiles.")
     with open(output_file, "w") as json_file:
         json.dump(results, json_file, indent=4, default=lambda x: bool(x) if isinstance(x, np.bool_) else x)
 
