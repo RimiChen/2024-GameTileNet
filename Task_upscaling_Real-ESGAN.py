@@ -6,10 +6,12 @@ from realesrgan import RealESRGANer
 from basicsr.archs.rrdbnet_arch import RRDBNet
 
 # --------- Settings ---------
-INPUT_DIR = "Data/GameTile/complete_labels_output_algo_no_reduce/complete"  # e.g., input_tiles/folder_x/*.png
-OUTPUT_DIR = "Data/GameTile/complete_labels_output_algo_no_reduce/upscaled_tiles/realesrgan_x4"
+# INPUT_DIR = "Data/GameTile/complete_labels_output_algo_no_reduce/complete"  # e.g., input_tiles/folder_x/*.png
+# OUTPUT_DIR = "Data/GameTile/complete_labels_output_algo_no_reduce/upscaled_tiles/realesrgan_x4"
 # INPUT_DIR = "Data/GameTile/complete_labels_output_model/complete"  # e.g., input_tiles/folder_x/*.png
 # OUTPUT_DIR = "Data/GameTile/complete_labels_output_model/upscaled_tiles/realesrgan_x4"
+INPUT_DIR  = "Data/GameTile/complete_author_cleaned"  # e.g., input_tiles/folder_x/*.png
+OUTPUT_DIR= "Data/GameTile/complete_author_processed/realesrgan_x4"
 # INPUT_DIR = 'input_tiles'
 # OUTPUT_DIR = 'upscaled_tiles/realesrgan_x4'
 MODEL_PATH = 'Data/weights/RealESRGAN_x4plus.pth'

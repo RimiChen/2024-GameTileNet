@@ -9,8 +9,10 @@ from realesrgan import RealESRGANer
 # -------- Configuration --------
 # input_root = "Data/GameTile/complete_labels_output_algo_no_reduce/complete"  # path to original tile images (subfolders inside)
 # output_root = "Data/GameTile/complete_labels_output_algo_no_reduce/upscaled_tiles/swinir_x4"  # where upscaled results go
-input_root = "Data/GameTile/complete_labels_output_model/complete"  # e.g., input_tiles/folder_x/*.png
-output_root= "Data/GameTile/complete_labels_output_model/upscaled_tiles/swinir_x4"
+# input_root = "Data/GameTile/complete_labels_output_model/complete"  # e.g., input_tiles/folder_x/*.png
+# output_root= "Data/GameTile/complete_labels_output_model/upscaled_tiles/swinir_x4"
+input_root = "Data/GameTile/complete_author_cleaned"  # e.g., input_tiles/folder_x/*.png
+output_root= "Data/GameTile/complete_author_processed/swinir_x4"
 model_path = "Data/001_classicalSR_DF2K_s64w8_SwinIR-M_x4.pth"  # corrected model checkpoint path
 scale = 4
 tile_size = 256

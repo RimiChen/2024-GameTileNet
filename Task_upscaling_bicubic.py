@@ -4,8 +4,10 @@ from PIL import Image
 # ======= Config =======
 # INPUT_ROOT = "Data/GameTile/complete_labels_output_algo_no_reduce/complete"  # e.g., input_tiles/folder_x/*.png
 # OUTPUT_ROOT = "Data/GameTile/complete_labels_output_algo_no_reduce/upscaled_tiles/bicubic"
-INPUT_ROOT = "Data/GameTile/complete_labels_output_model/complete"  # e.g., input_tiles/folder_x/*.png
-OUTPUT_ROOT = "Data/GameTile/complete_labels_output_model/upscaled_tiles/bicubic"
+# INPUT_ROOT = "Data/GameTile/complete_labels_output_model/complete"  # e.g., input_tiles/folder_x/*.png
+# OUTPUT_ROOT = "Data/GameTile/complete_labels_output_model/upscaled_tiles/bicubic"
+INPUT_ROOT = "Data/GameTile/complete_author_cleaned"  # e.g., input_tiles/folder_x/*.png
+OUTPUT_ROOT = "Data/GameTile/complete_author_processed/bicubic"
 
 TARGET_LONG_EDGE = 512       # Longest side will be resized to this
 FILL_BACKGROUND = True
