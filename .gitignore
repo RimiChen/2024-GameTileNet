@@ -165,6 +165,7 @@ cython_debug/
 Data/
 PaperImages/
 Testing_Annotations/
+GroundingDINO/
 
 ### keys
 sk.py
