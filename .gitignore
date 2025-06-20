@@ -166,6 +166,7 @@ Data/
 PaperImages/
 Testing_Annotations/
 GroundingDINO/
+segment-anything/
 
 ### keys
 sk.py

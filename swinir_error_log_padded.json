@@ -1,0 +1,11 @@
+{
+  "Data/GameTile/complete_author_cleaned\\Monsters\\acidDragon.png": "shape '[1, 8, 8, 8, 8, 180]' is invalid for input of size 844560",
+  "Data/GameTile/complete_author_cleaned\\Monsters\\cyclops.png": "shape '[1, 8, 8, 8, 8, 180]' is invalid for input of size 795960",
+  "Data/GameTile/complete_author_cleaned\\Monsters\\ferrousGolem.png": "shape '[1, 8, 8, 8, 8, 180]' is invalid for input of size 748800",
+  "Data/GameTile/complete_author_cleaned\\Monsters\\killerTree.png": "shape '[1, 8, 8, 8, 8, 180]' is invalid for input of size 748800",
+  "Data/GameTile/complete_author_cleaned\\Monsters\\livingDeadWizard2.png": "shape '[1, 11, 8, 9, 8, 180]' is invalid for input of size 1244880",
+  "Data/GameTile/complete_author_cleaned\\Monsters\\warpDemon.png": "shape '[1, 8, 8, 8, 8, 180]' is invalid for input of size 748800",
+  "Data/GameTile/complete_author_cleaned\\player\\giant.png": "shape '[1, 8, 8, 8, 8, 180]' is invalid for input of size 748800",
+  "Data/GameTile/complete_author_cleaned\\terrain\\sphinx.png": "shape '[1, 8, 8, 9, 8, 180]' is invalid for input of size 852480",
+  "Data/GameTile/complete_author_cleaned\\terrain\\tallTree.png": "shape '[1, 11, 8, 9, 8, 180]' is invalid for input of size 1169460"
+}

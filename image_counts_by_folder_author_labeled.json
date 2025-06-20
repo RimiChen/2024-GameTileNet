@@ -1,0 +1,55 @@
+{
+  "Data/GameTile/complete_author_cleaned": {
+    "beings": 10,
+    "Items": 727,
+    "Monsters": 1008,
+    "player": 29,
+    "terrain": 33,
+    "tiles": 91,
+    "__total__": 1898
+  },
+  "Data/GameTile/complete_author_processed/bicubic": {
+    "beings": 10,
+    "Items": 727,
+    "Monsters": 1008,
+    "player": 29,
+    "terrain": 33,
+    "tiles": 91,
+    "__total__": 1898
+  },
+  "Data/GameTile/complete_author_processed/swinir_x4": {
+    "Items": 673,
+    "Monsters": 3,
+    "player": 2,
+    "terrain": 5,
+    "tiles": 88,
+    "__total__": 771
+  },
+  "Data/GameTile/complete_author_processed/realesrgan_x4": {
+    "beings": 10,
+    "Items": 727,
+    "Monsters": 1008,
+    "player": 29,
+    "terrain": 33,
+    "tiles": 91,
+    "__total__": 1898
+  },
+  "Data/GameTile/complete_author_processed/sd_fidelity": {
+    "beings": 10,
+    "Items": 727,
+    "Monsters": 1008,
+    "player": 29,
+    "terrain": 33,
+    "tiles": 91,
+    "__total__": 1898
+  },
+  "Data/GameTile/complete_author_processed/sd_img2img": {
+    "beings": 10,
+    "Items": 727,
+    "Monsters": 1008,
+    "player": 29,
+    "terrain": 33,
+    "tiles": 91,
+    "__total__": 1898
+  }
+}
