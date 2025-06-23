@@ -2,7 +2,7 @@ import json
 from collections import defaultdict
 import os
 
-STORY_ID = "10"  # Change this to your story ID
+STORY_ID = "0"  # Change this to your story ID
 
 # === Config ===
 INPUT_PATH = f"StoryFiles/output_KG_story_{STORY_ID}/{STORY_ID}_kg_data.json"

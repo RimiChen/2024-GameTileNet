@@ -2,7 +2,7 @@ import json
 from collections import defaultdict
 
 SAVE_OUT_FOLDER = "StoryFiles/"  # Change if needed
-FILE_NUMBER = 10  # Change to 2 for Story 2
+FILE_NUMBER = 0  # Change to 2 for Story 2
 
 # Load files
 with open(f"{SAVE_OUT_FOLDER}{FILE_NUMBER}_object_affordance_langchain.json", 'r') as f:

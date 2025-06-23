@@ -3,7 +3,7 @@ from collections import defaultdict
 from difflib import get_close_matches
 
 SAVE_OUT_FOLDER = "StoryFiles/"
-FILE_NUMBER = 10  # Change to 2 for another story
+FILE_NUMBER = 0  # Change to 2 for another story
 SIMILARITY_THRESHOLD = 0.85  # Between 0 and 1
 
 # Load files

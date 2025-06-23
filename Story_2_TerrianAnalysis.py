@@ -5,7 +5,7 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 
 
-STORY_ID = 10
+STORY_ID = 0
 
 # --- Config ---
 INPUT_FILE = "StoryFiles/"+str(STORY_ID)+"_adventure_scene_output_FIXED.json"

@@ -3,7 +3,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 # === Input Files ===
-STORY_ID = "10"
+STORY_ID = "0"
 base_path = "StoryFiles/"
 scene_file = f"{base_path}{STORY_ID}_scene_generation_decisions.json"
 env_file = f"{base_path}{STORY_ID}_scene_object_propagation_CONVERTED.json"

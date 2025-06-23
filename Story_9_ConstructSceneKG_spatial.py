@@ -1,7 +1,7 @@
 import json
 
 SAVE_OUT_FOLDER = "StoryFiles/"
-FILE_NUMBER = 10 #"StoryFiles/"+str(FILE_NUMBER)+"
+FILE_NUMBER = 0 #"StoryFiles/"+str(FILE_NUMBER)+"
 
 # Load input file
 with open("StoryFiles/"+str(FILE_NUMBER)+"_adventure_scene_output_FIXED.json", "r") as f:

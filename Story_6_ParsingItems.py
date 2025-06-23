@@ -2,7 +2,7 @@ import json
 from collections import defaultdict
 
 SAVE_OUT_FOLDER = "StoryFiles/"
-FILE_NUMBER = 10  # Update this to match the story number
+FILE_NUMBER = 0  # Update this to match the story number
 
 # Load files
 with open(f"{SAVE_OUT_FOLDER}{FILE_NUMBER}_object_affordance_langchain.json", 'r') as f:

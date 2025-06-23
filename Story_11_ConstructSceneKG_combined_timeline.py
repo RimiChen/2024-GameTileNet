@@ -6,7 +6,7 @@ from collections import defaultdict
 from difflib import SequenceMatcher
 
 # === Configuration ===
-STORY_ID = "10"  # Change this to your story ID
+STORY_ID = "0"  # Change this to your story ID
 BASE_FOLDER = "StoryFiles/"
 COMBINED_FILE = f"{BASE_FOLDER}{STORY_ID}_scene_kg_combined.json"
 RELATIONS_FILE = f"{BASE_FOLDER}{STORY_ID}_scene_from_relations.json"

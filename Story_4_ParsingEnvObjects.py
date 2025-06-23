@@ -3,7 +3,7 @@ from collections import defaultdict
 from pathlib import Path
 
 SAVE_OUT_FOLDER = "StoryFiles/"
-FILE_NUMBER = 10 #"StoryFiles/"+FILE_NUMBER+"
+FILE_NUMBER = 0 #"StoryFiles/"+FILE_NUMBER+"
 
 # Input files
 AFFORDANCE_PATH = SAVE_OUT_FOLDER + str(FILE_NUMBER)+"_object_affordance_langchain.json"

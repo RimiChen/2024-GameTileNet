@@ -2,7 +2,7 @@ import json
 
 
 SAVE_OUT_FOLDER = "StoryFiles/"
-FILE_NUMBER = 10 #"StoryFiles/"+str(FILE_NUMBER)+"
+FILE_NUMBER = 0 #"StoryFiles/"+str(FILE_NUMBER)+"
 
 # Load the current object propagation dictionary
 with open("StoryFiles/"+str(FILE_NUMBER)+"_scene_object_propagation.json", "r") as f:
