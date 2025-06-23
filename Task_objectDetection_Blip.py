@@ -6,8 +6,8 @@ import torch
 
 # === Settings ===
 # ROOT_FOLDER = "Data/GameTile/complete_labels_output_algo_no_reduce/upscaled_tiles/bicubic"  # This folder contains subfolders with images
-ROOT_FOLDER = "Data/GameTile/complete_author_cleaned"  # This folder contains subfolders with images
-OUTPUT_JSON = "Data/GameTile/vlm_caption_results_author_original.json"
+ROOT_FOLDER = "Data/GameTile/complete_author_processed/swinir_x4"  # This folder contains subfolders with images
+OUTPUT_JSON = "Data/GameTile/vlm_caption_results_author_swinir_x4.json"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 # === Load Model ===

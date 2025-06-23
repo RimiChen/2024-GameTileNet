@@ -167,6 +167,8 @@ PaperImages/
 Testing_Annotations/
 GroundingDINO/
 segment-anything/
+outdated_scripts/
+Model/
 
 ### keys
 sk.py

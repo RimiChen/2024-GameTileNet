@@ -1,0 +1,8 @@
+{
+  "total_images": 1898,
+  "total_images_with_yolo_detection": 35,
+  "total_detections": 36,
+  "total_matches": 0,
+  "images_with_at_least_one_match": 0,
+  "overall_precision": 0.0
+}

@@ -75,8 +75,8 @@ def process_folder(root_folder, output_json, output_annotated_dir, method="yolo"
 if __name__ == "__main__":
     process_folder(
         # root_folder="Data/GameTile/complete_labels_output_algo_no_reduce/upscaled_tiles/bicubic",
-        root_folder="Data/GameTile/complete_author_processed/sd_img2img",
-        output_json="Data/GameTile/yolo8m_detected_objects_author_sd_img2img.json",
-        output_annotated_dir="Data/GameTile/yolo8m_object_annotated_tiles_author_sd_img2img",
+        root_folder="Data/GameTile/complete_author_processed/swinir_x4",
+        output_json="Data/GameTile/yolo8m_detected_objects_author_swinir_x4.json",
+        output_annotated_dir="Data/GameTile/yolo8m_object_annotated_tiles_author_swinir_x4",
         method="yolo"  # or "dummy"
     )
