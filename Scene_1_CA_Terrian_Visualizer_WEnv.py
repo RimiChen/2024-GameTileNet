@@ -7,7 +7,7 @@ from pathlib import Path
 import random
 
 SAVE_OUT_FOLDER = "StoryFiles/"
-FILE_NUMBER = 1 #"StoryFiles/"+FILE_NUMBER+"
+FILE_NUMBER = 0 #"StoryFiles/"+FILE_NUMBER+"
 
 # ---------------- Config ----------------
 MAP_WIDTH, MAP_HEIGHT = 30, 20
