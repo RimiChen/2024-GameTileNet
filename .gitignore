@@ -169,6 +169,8 @@ GroundingDINO/
 segment-anything/
 outdated_scripts/
 Model/
+PackForPaper/
+PackForPaper.zip
 
 ### keys
 sk.py
