@@ -75,15 +75,13 @@ conda env create -f environment.yml
 
 bibTex:
 
+```
 @article{chen2025gametilenet,
   title={GameTileNet: A Semantic Dataset for Low-Resolution Game Art in Procedural Content Generation},
   author={Chen, Yi-Chun and Jhala, Arnav},
   journal={arXiv preprint arXiv:2507.02941},
   year={2025}
 }
-
-```
-
 
 ```
  
