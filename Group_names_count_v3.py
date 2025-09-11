@@ -7,7 +7,8 @@ from collections import defaultdict
 
 # === Paths ===
 group_file = 'Data/GameTile/group_supercategories.xlsx'
-label_file = 'Data/GameTile/complete_author_json/manual_group_labels.json'
+# label_file = 'Data/GameTile/complete_author_json/manual_group_labels.json'
+label_file = 'Data/GameTile/SemanticLabels/author_labeled_1_manual_group_labels.json'
 json_stat_output = 'Data/GameTile/group_supercategory_statistics.json'
 
 # === Load Mappings ===
